@@ -29,11 +29,11 @@ android {
 }
 
 dependencies {
-    compile 'com.evernote:android-job:1.1.2'
-    compile "com.android.support:appcompat-v7:$rootProject.ext.supportLibVersion"
-    compile "com.android.support:design:$rootProject.ext.supportLibVersion"
-    compile "com.android.support:recyclerview-v7:$rootProject.ext.supportLibVersion"
-    compile "com.google.android.gms:play-services-gcm:$rootProject.ext.playServicesVersion"
+    compile 'com.evernote:android-job:1.1.7'
+    compile "com.android.support:appcompat-v7:$supportLibVersion"
+    compile "com.android.support:design:$supportLibVersion"
+    compile "com.android.support:recyclerview-v7:$supportLibVersion"
+    compile "com.google.android.gms:play-services-gcm:$playServicesVersion"
 
     compile 'net.vrallev.android:app-context:1.0.0'
 }

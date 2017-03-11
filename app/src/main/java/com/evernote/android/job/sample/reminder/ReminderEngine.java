@@ -131,7 +131,7 @@ public class ReminderEngine {
 
         Notification notification = new NotificationCompat.Builder(mContext)
                 .setContentTitle("Reminder " + reminder.getId())
-                .setContentText("Attend GDG Düsseldorf!")
+                .setContentText("Attend MTC Munich!")
                 .setAutoCancel(true)
                 .setContentIntent(pendingIntent)
                 .setSmallIcon(R.drawable.ic_notification)
