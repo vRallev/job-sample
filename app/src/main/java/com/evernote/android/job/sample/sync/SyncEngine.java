@@ -16,6 +16,7 @@ import java.util.Random;
 /**
  * @author rwondratschek
  */
+@SuppressWarnings("WeakerAccess")
 public class SyncEngine {
 
     public void syncReminders() throws IOException {

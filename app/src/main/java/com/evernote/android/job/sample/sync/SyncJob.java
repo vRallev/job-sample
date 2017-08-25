@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author rwondratschek
  */
+@SuppressWarnings("UnusedReturnValue")
 public class SyncJob extends Job {
 
     public static final String TAG = "SyncJob";
@@ -37,7 +38,6 @@ public class SyncJob extends Job {
 
         return new JobRequest.Builder(TAG)
                 .setPeriodic(interval, flex)
-                .setPersisted(true)
                 .setUpdateCurrent(true)
                 .setRequiredNetworkType(JobRequest.NetworkType.UNMETERED)
                 .setRequiresCharging(true)

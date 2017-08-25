@@ -2,14 +2,17 @@ package com.evernote.android.job.sample.reminder;
 
 import android.annotation.SuppressLint;
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.NotificationCompat;
 
 import com.evernote.android.job.JobManager;
 import com.evernote.android.job.sample.MainActivity;
@@ -27,6 +30,7 @@ import java.util.Set;
 /**
  * @author rwondratschek
  */
+@SuppressWarnings({"WeakerAccess", "UnusedReturnValue"})
 public class ReminderEngine {
 
     private static final String REMINDER_ID = "REMINDER_ID";
@@ -126,12 +130,21 @@ public class ReminderEngine {
         }
     }
 
+    @SuppressWarnings("ConstantConditions")
     public void showReminder(Reminder reminder) {
         PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, new Intent(mContext, MainActivity.class), 0);
 
-        Notification notification = new NotificationCompat.Builder(mContext)
+        String channelId = "reminder";
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(channelId, "Job Sample", NotificationManager.IMPORTANCE_LOW);
+            channel.setDescription("Job sample");
+            mContext.getSystemService(NotificationManager.class).createNotificationChannel(channel);
+        }
+
+        Notification notification = new NotificationCompat.Builder(mContext, channelId)
                 .setContentTitle("Reminder " + reminder.getId())
-                .setContentText("Attend MTC Munich!")
+                .setContentText("Hello Droidcon")
                 .setAutoCancel(true)
                 .setContentIntent(pendingIntent)
                 .setSmallIcon(R.drawable.ic_notification)

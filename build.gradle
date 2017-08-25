@@ -1,31 +1,32 @@
 buildscript {
     repositories {
+        google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.0'
-        classpath 'me.tatarka:gradle-retrolambda:3.6.0'
+        classpath 'com.android.tools.build:gradle:3.0.0-beta2'
     }
 }
 
 allprojects {
     repositories {
+        google()
         jcenter()
     }
 }
 
 ext {
-    compileSdkVersion = 25
+    compileSdkVersion = 26
     targetSdkVersion = compileSdkVersion
     minSdkVersion = 14
 
     buildToolsVersion = '25.0.2'
 
-    supportLibVersion = '25.2.0'
-    playServicesVersion = '10.2.0'
+    supportLibVersion = '26.0.1'
+    playServicesVersion = '11.2.0'
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '3.4.1'
+    gradleVersion = '4.1'
     distributionType = 'ALL'
 }

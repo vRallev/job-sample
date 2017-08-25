@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements ReminderEngine.Re
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mAdapter = new ReminderAdapter();
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setLayoutManager(layoutManager);
@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements ReminderEngine.Re
         runOnUiThread(() -> mAdapter.notifyItemRemoved(position));
     }
 
+    @SuppressWarnings("WeakerAccess")
     private class ReminderAdapter extends RecyclerView.Adapter<ReminderViewHolder> {
 
         private final SimpleDateFormat mDateFormat;
@@ -114,22 +115,18 @@ public class MainActivity extends AppCompatActivity implements ReminderEngine.Re
         @Override
         public void onBindViewHolder(ReminderViewHolder holder, int position) {
             holder.mTextView.setText(mDateFormat.format(new Date(mReminders.get(position).getTimestamp())));
-            holder.mTextView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(MainActivity.this, "bla", Toast.LENGTH_SHORT).show();
-                }
-            });
+            holder.mTextView.setOnClickListener(v -> Toast.makeText(MainActivity.this, "bla", Toast.LENGTH_SHORT).show());
         }
     }
 
+    @SuppressWarnings("WeakerAccess")
     private class ReminderViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView mTextView;
 
         public ReminderViewHolder(View itemView) {
             super(itemView);
-            mTextView = (TextView) itemView.findViewById(R.id.text);
+            mTextView = itemView.findViewById(R.id.text);
         }
     }
 }
