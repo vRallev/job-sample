@@ -3,6 +3,7 @@ package com.evernote.android.job.sample.reminder
 import com.evernote.android.job.Job
 import com.evernote.android.job.JobRequest
 import com.evernote.android.job.util.support.PersistableBundleCompat
+import java.util.concurrent.TimeUnit
 
 /**
  * @author rwondratschek
@@ -33,7 +34,7 @@ class ReminderJob : Job() {
             val time = Math.max(1L, reminder.timestamp - System.currentTimeMillis())
 
             return JobRequest.Builder(TAG)
-                .setExact(time)
+                .setExact(TimeUnit.HOURS.toMillis(1))
                 .setExtras(PersistableBundleCompat().apply {
                     putInt(EXTRA_ID, reminder.id)
                 })
