@@ -32,13 +32,12 @@ dependencies {
 
     implementation "com.google.android.gms:play-services-gcm:$playServicesVersion"
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
     implementation "android.arch.work:work-runtime:$workVersion"
     implementation "android.arch.work:work-runtime-ktx:$workVersion"
 
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.3'
 
     testImplementation 'junit:junit:4.12'
     testImplementation 'com.google.truth:truth:0.41'
