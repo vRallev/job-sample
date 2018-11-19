@@ -27,7 +27,7 @@ ext {
 
     supportLibVersion = '28.0.0'
     playServicesVersion = '15.0.1'
-    workVersion = '1.0.0-alpha07'
+    workVersion = '1.0.0-alpha11'
 }
 
 task wrapper(type: Wrapper) {

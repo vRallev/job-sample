@@ -1,9 +1,11 @@
 package com.evernote.android.job.sample.sync
 
+import android.content.Context
 import androidx.work.ArrayCreatingInputMerger
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.Worker
+import androidx.work.WorkerParameters
 import androidx.work.setInputMerger
 import androidx.work.workDataOf
 import java.util.UUID
@@ -12,9 +14,12 @@ import java.util.UUID
  * @author rwondratschek
  */
 
-private const val EXTRA_IMAGE = "EXTRA_IMAGE"
+const val EXTRA_IMAGE = "EXTRA_IMAGE"
 
-class ImageCompressWorker : Worker() {
+class ImageCompressWorker(
+    context: Context,
+    workerParams: WorkerParameters
+) : Worker(context, workerParams) {
     override fun doWork(): Result {
         val imageId = inputData.getInt(EXTRA_IMAGE, -1)
         if (imageId <= 0) return Result.FAILURE
@@ -28,7 +33,7 @@ class ImageCompressWorker : Worker() {
 
 }
 
-class ImageUploadWorker : Worker() {
+class ImageUploadWorker(context: Context, workerParams: WorkerParameters) : Worker(context, workerParams) {
     override fun doWork(): Result {
         val imageId = inputData.getIntArray(EXTRA_IMAGE) ?: return Result.FAILURE
 

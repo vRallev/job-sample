@@ -9,14 +9,14 @@ import com.evernote.android.job.util.support.PersistableBundleCompat
  * @author rwondratschek
  */
 class ImageUploadJob : Job() {
-    override fun onRunJob(params: Params): Result {
+    public override fun onRunJob(params: Params): Result {
         return Result.SUCCESS
     }
 
     companion object {
 
         const val TAG = "ImageUploadJob"
-        private const val EXTRA_IMAGE = "EXTRA_IMAGE"
+        const val EXTRA_IMAGE = "EXTRA_IMAGE"
 
         fun schedule(image: Image) {
             val request = JobRequest.Builder(TAG)

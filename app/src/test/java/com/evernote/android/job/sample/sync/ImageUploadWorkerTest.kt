@@ -1,6 +1,9 @@
 package com.evernote.android.job.sample.sync
 
-import androidx.work.Worker
+import android.app.Application
+import androidx.work.ListenableWorker
+import androidx.work.WorkerParameters
+import androidx.work.workDataOf
 import com.evernote.android.job.Job
 import com.evernote.android.job.util.support.PersistableBundleCompat
 import com.google.common.truth.Truth.assertThat
@@ -15,12 +18,18 @@ class ImageUploadWorkerTest {
 
     @Test
     fun `verify worker uploads images`() {
-        val worker = ImageUploadWorker()
-//        worker.inputData = workDataOf() // doesn't work :(
+        val context = mock<Application> { }
+
+        val inputData = workDataOf(EXTRA_IMAGE to IntArray(5)) // fake image ID
+        val workerParameters = mock<WorkerParameters> {
+            on { this.inputData } doReturn inputData
+        }
+
+        val worker = ImageUploadWorker(context, workerParameters)
 
         val result = worker.doWork()
 
-        assertThat(result).isEqualTo(Worker.Result.SUCCESS)
+        assertThat(result).isEqualTo(ListenableWorker.Result.SUCCESS)
     }
 
     @Test

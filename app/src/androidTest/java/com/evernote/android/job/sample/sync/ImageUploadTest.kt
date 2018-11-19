@@ -1,9 +1,9 @@
 package com.evernote.android.job.sample.sync
 
 import android.support.test.InstrumentationRegistry
-import androidx.work.State
+import androidx.work.WorkInfo
 import androidx.work.WorkManager
-import androidx.work.test.WorkManagerTestInitHelper
+import androidx.work.testing.WorkManagerTestInitHelper
 import org.junit.Test
 import kotlin.test.assertEquals
 
@@ -22,8 +22,8 @@ class ImageUploadTest {
             )
         )
 
-        val status = WorkManager.getInstance().synchronous().getStatusByIdSync(uuid)
+        val workInfo = WorkManager.getInstance().getWorkInfoById(uuid).get()
 
-        assertEquals(status?.state, State.SUCCEEDED)
+        assertEquals(workInfo?.state, WorkInfo.State.SUCCEEDED)
     }
 }
